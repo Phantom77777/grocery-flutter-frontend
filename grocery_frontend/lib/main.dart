@@ -17,17 +17,39 @@ class _NinjaCardState extends State<NinjaCard> {
 
   int ninjalevel = 0;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.green[700],
+        drawer: Drawer(),
         appBar: AppBar(
-          title: Text('Grocery Stores'),
+          title: Text('G', style: TextStyle(fontWeight: FontWeight.bold)),
           centerTitle: true,
           backgroundColor: Colors.green[900],
           elevation: 0.0,
+          actions: <Widget>[
+            Padding(
+                padding: EdgeInsets.only(right: 20.0),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Icon(
+                    Icons.shopping_cart_rounded,
+                    size: 26.0,
+                  ),
+                )
+            ),
+            Padding(
+                padding: EdgeInsets.only(right: 20.0),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Icon(
+                      Icons.account_circle,
+                  ),
+                )
+            ),
+          ],
         ),
+
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             setState(() {
@@ -37,7 +59,7 @@ class _NinjaCardState extends State<NinjaCard> {
           child: Icon(Icons.add),
           backgroundColor: Colors.grey[800],
         ),
-        body:Padding(
+        body:SingleChildScrollView(child: Padding(
           padding: EdgeInsets.fromLTRB(30, 30, 20, 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,92 +68,99 @@ class _NinjaCardState extends State<NinjaCard> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    width: 300,
+                    width: 330,
                     child: TextField(
                       decoration: new InputDecoration(
                         fillColor: Colors.white,
                         filled: true,
+                        prefixIcon: Icon(Icons.search),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white, width: 5.0),
+                            borderRadius: BorderRadius.circular(10)
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white, width: 5.0),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         hintText: 'Search',
                       ),
                     ),
                     ),
-
-                 Container(
-                    padding: EdgeInsets.only(left: MediaQuery.of(context).size.width-375),
-                    child: Icon(Icons.search),
-
-                  ),
                 ],
-
               ),
-
-              Divider(
-                height: 60.0,
-                color: Colors.grey[800],
-              ),
-              Text(
-                'NAME',
-                style: TextStyle(
-                    color: Colors.grey,
-                    letterSpacing: 2.0
-                ),
-              ),
-              SizedBox(height: 10.0),
-              Text(
-                'Shop',
-                style: TextStyle(
-                    color: Colors.amberAccent[200],
-                    letterSpacing: 2.0,
-                    fontSize: 28.0,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-              SizedBox(height: 30.0),
-              Text(
-                'CURRENT NINJA LEVEL',
-                style: TextStyle(
-                    color: Colors.grey,
-                    letterSpacing: 2.0
-                ),
-              ),
-              SizedBox(height: 10.0),
-              Text(
-                '$ninjalevel',
-                style: TextStyle(
-                    color: Colors.amberAccent[200],
-                    letterSpacing: 2.0,
-                    fontSize: 28.0,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-              SizedBox(height: 30.0),
-              Row(
-                children: [
-                  Icon(
-                    Icons.email_rounded,
-                    color: Colors.grey[400],
-                  ),
-                  SizedBox(width: 10.0),
-                  Text(
-                    'prithvijadwani71@gmail.com',
-                    style: TextStyle(
-                      color: Colors.grey[400],
-                      fontSize: 18.0,
-                      letterSpacing:1.0,
+                SizedBox(height: 50,),
+                Stack(
+                  children: [
+                  Container(
+                    height: 200,
+                    width: 325,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white)
                     ),
-
+                    child: Image(image: AssetImage('assets/vegetables.jpg'),
+                        fit: BoxFit.fill),
                   ),
+                  Container(
+                     height: 200,
+                      width: 325,
+                      child: Center( child: Text('Fruits & Vegetables', style: TextStyle(backgroundColor: Colors.black, fontSize: 30, color: Colors.white))))
+                ],),
+              SizedBox(height: 50,),
+              Stack(
+                children: [
+                  Container(
+                    height: 200,
+                    width: 325,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white)
+                    ),
+                    child: Image(image: AssetImage('assets/vegetables.jpg'),
+                        fit: BoxFit.fill),
+                  ),
+                  Container(
+                      height: 200,
+                      width: 325,
+                      child: Center( child: Text('Snacks & Munchies', style: TextStyle(backgroundColor: Colors.black, fontSize: 30, color: Colors.white))))
+                ],),
+              SizedBox(height: 50,),
+              Stack(
+                children: [
+                  Container(
+                    height: 200,
+                    width: 325,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white)
+                    ),
+                    child: Image(image: AssetImage('assets/vegetables.jpg'),
+                        fit: BoxFit.fill),
+                  ),
+                  Container(
+                      height: 200,
+                      width: 325,
+                      child: Center( child: Text('Drink & Beverages', style: TextStyle(backgroundColor: Colors.black, fontSize: 30, color: Colors.white))))
+                ],),
+              SizedBox(height: 50,),
+              Stack(
+                children: [
+                  Container(
+                    height: 200,
+                    width: 325,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white)
+                    ),
+                    child: Image(image: AssetImage('assets/vegetables.jpg'),
+                        fit: BoxFit.fill),
+                  ),
+                  Container(
+                      height: 200,
+                      width: 325,
+                      child: Center( child: Text('Daily Staples', style: TextStyle(backgroundColor: Colors.black, fontSize: 30, color: Colors.white))))
+                ],)
+
                 ],
               ),
-            ],
           ),
         )
-    );
+        );
   }
 }
