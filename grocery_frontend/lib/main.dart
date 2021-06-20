@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'category_card.dart';
+import 'fruits.dart';
 
 void main() => runApp(MaterialApp(
   home: NinjaCard(),
+  onGenerateRoute: Router.generateRoute,
+  initialRoute: '/',
 ));
 
 class NinjaCard extends StatefulWidget {
@@ -21,7 +25,68 @@ class _NinjaCardState extends State<NinjaCard> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.green[700],
-        drawer: Drawer(),
+        drawer: Container(width: 250,
+          child: Drawer(
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+             Container(height: 100,
+
+
+              child: DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Text('Drawer Header'),
+              ),
+             ),
+              ListTile(
+                title: Text('Home'),
+                onTap: () {
+                  // Update the state of the app.
+                  // ...
+                },
+              ),
+              ListTile(
+                title: Text('My List'),
+                onTap: () {
+                  // Update the state of the app.
+                  // ...
+                },
+              ),
+              ListTile(
+                title: Text('Shop by Category'),
+                onTap: () {
+                  // Update the state of the app.
+                  // ...
+                },
+              ),
+              ListTile(
+                title: Text('FAQ'),
+                onTap: () {
+                  // Update the state of the app.
+                  // ...
+                },
+              ),
+              ListTile(
+                title: Text('Contact Us'),
+                onTap: () {
+                  // Update the state of the app.
+                  // ...
+                },
+              ),
+              ListTile(
+                title: Text('About Us'),
+                onTap: () {
+                  // Update the state of the app.
+                  // ...
+                },
+              ),
+            ],
+          ),
+        ),
+        ),
         appBar: AppBar(
           title: Text('G', style: TextStyle(fontWeight: FontWeight.bold)),
           centerTitle: true,
@@ -88,79 +153,43 @@ class _NinjaCardState extends State<NinjaCard> {
                     ),
                 ],
               ),
-                SizedBox(height: 50,),
-                Stack(
-                  children: [
-                  Container(
-                    height: 200,
-                    width: 325,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white)
-                    ),
-                    child: Image(image: AssetImage('assets/vegetables.jpg'),
-                        fit: BoxFit.fill),
-                  ),
-                  Container(
-                     height: 200,
-                      width: 325,
-                      child: Center( child: Text('Fruits & Vegetables', style: TextStyle(backgroundColor: Colors.black, fontSize: 30, color: Colors.white))))
-                ],),
-              SizedBox(height: 50,),
-              Stack(
-                children: [
-                  Container(
-                    height: 200,
-                    width: 325,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white)
-                    ),
-                    child: Image(image: AssetImage('assets/vegetables.jpg'),
-                        fit: BoxFit.fill),
-                  ),
-                  Container(
-                      height: 200,
-                      width: 325,
-                      child: Center( child: Text('Snacks & Munchies', style: TextStyle(backgroundColor: Colors.black, fontSize: 30, color: Colors.white))))
-                ],),
-              SizedBox(height: 50,),
-              Stack(
-                children: [
-                  Container(
-                    height: 200,
-                    width: 325,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white)
-                    ),
-                    child: Image(image: AssetImage('assets/vegetables.jpg'),
-                        fit: BoxFit.fill),
-                  ),
-                  Container(
-                      height: 200,
-                      width: 325,
-                      child: Center( child: Text('Drink & Beverages', style: TextStyle(backgroundColor: Colors.black, fontSize: 30, color: Colors.white))))
-                ],),
-              SizedBox(height: 50,),
-              Stack(
-                children: [
-                  Container(
-                    height: 200,
-                    width: 325,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white)
-                    ),
-                    child: Image(image: AssetImage('assets/vegetables.jpg'),
-                        fit: BoxFit.fill),
-                  ),
-                  Container(
-                      height: 200,
-                      width: 325,
-                      child: Center( child: Text('Daily Staples', style: TextStyle(backgroundColor: Colors.black, fontSize: 30, color: Colors.white))))
-                ],)
+                CategoryCard('Fruits & Vegetables', 'vegetables.jpg', '/fruits'),
+                CategoryCard('Snacks & Munchies', 'vegetables.jpg', '/snacks'),
+                CategoryCard('Drinks & Beverages', 'vegetables.jpg', '/drinks'),
+                CategoryCard('Daily Staples', 'vegetables.jpg', '/staples'),
+
 
                 ],
               ),
           ),
         )
         );
+  }
+}
+
+class Router {
+  static Route<dynamic> generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case '/':
+        return MaterialPageRoute(builder: (_) => NinjaCard());
+      case '/fruits':
+        return MaterialPageRoute(
+            builder: (_) => FruitsPage('Fruits'));
+      case '/snacks':
+        return MaterialPageRoute(
+            builder: (_) => FruitsPage('Snacks'));
+      case '/drinks':
+        return MaterialPageRoute(
+            builder: (_) => FruitsPage('Drinks'));
+      case '/staples':
+        return MaterialPageRoute(
+            builder: (_) => FruitsPage('Staples'));
+      default:
+        return MaterialPageRoute(
+            builder: (_) => Scaffold(
+              body: Center(
+                  child: Text('No route defined for ${settings.name}')),
+            ));
+    }
   }
 }
