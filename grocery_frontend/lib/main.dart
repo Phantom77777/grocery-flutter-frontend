@@ -3,12 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'category_card.dart';
 import 'fruits.dart';
+import 'apicall.dart';
 
-void main() => runApp(MaterialApp(
-  home: NinjaCard(),
-  onGenerateRoute: Router.generateRoute,
-  initialRoute: '/',
-));
+void main() async {
+  final products = await ProductProvider().fetchProducts();
+  print(products);
+  runApp(MaterialApp(
+    home: NinjaCard(),
+    onGenerateRoute: Router.generateRoute,
+    initialRoute: '/',
+  ));
+
+}
 
 class NinjaCard extends StatefulWidget {
   const NinjaCard({Key? key}) : super(key: key);
@@ -24,7 +30,7 @@ class _NinjaCardState extends State<NinjaCard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.green[700],
+        backgroundColor: Colors.green,
         drawer: Container(width: 250,
           child: Drawer(
           child: ListView(

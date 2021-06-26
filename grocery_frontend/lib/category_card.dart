@@ -17,11 +17,18 @@ class CategoryCard extends StatelessWidget {
             height: 200,
             width: 325,
             decoration: BoxDecoration(
-                border: Border.all(color: Colors.white)
+                border: Border.all(
+                    color: Colors.green,
+                ),
+                borderRadius: BorderRadius.circular(20)
             ),
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
             child: Image(image: AssetImage('assets/${this.imagePath}'),
                 fit: BoxFit.fill),
+            ),
           ),
+
           Container(
               height: 200,
               width: 325,
